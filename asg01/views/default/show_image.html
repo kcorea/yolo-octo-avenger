@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+[ {{=A('home', _href=URL('index'))}} ]
+<h2>Image: {{=image.title}}</h2>
+<center>
+  {{=IMG(_src=URL('download', args=image.filename))}}
+</center>
+<h2>Description</h2>
+<p>{{=image.description}}</p>

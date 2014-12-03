@@ -1,0 +1,27 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script>
+$(document).ready(function() {
+  $("#search").click(function() {
+    location.href = "{{=search_url}}"
+  });
+});
+</script>
+{{end}}
+
+
+<h1>Search Results</h1>
+{{if len(recipes):}}
+  {{for recipe in recipes:}}
+    {{=A(IMG(_src=URL('download', args=recipe.image),
+             _width="200px", _height="200px"),
+         _href=URL('view', args=recipe.id))}}
+    {{=P(A(recipe.title, _href=URL('view', args=recipe.id))
+         + ' - ' + recipe.description)}}
+  {{pass}}
+{{else:}}
+  <p>no results match that criteria</p>
+{{pass}}
+
+<button  id="search">Return to Search</button>

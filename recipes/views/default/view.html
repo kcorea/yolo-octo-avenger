@@ -1,0 +1,40 @@
+{{extend 'layout.html'}}
+
+<h1>{{=recipe.title}}</h1>
+<img width="300px" src="{{=URL('download', args=recipe.image)}}"/>
+<p>{{=recipe.description}}</p>
+{{=plugin_rating('recipe', recipe.id)}}
+
+<h3>main ingredients:</h3>
+<ul>
+{{for ingredient in recipe.ingredient_list:}}
+   <li>{{=ingredient}}</li>
+{{pass}}
+</ul>
+
+<h3>ingredients:</h3>
+<p>{{=PRE(recipe.ingredients)}}</p>
+
+<h3>cooking instructions:</h3>
+<p>{{=PRE(recipe.instructions)}}</p>
+
+<h3>comments:</h3>
+{{if len(comments):}}
+<table>
+  {{for comment in comments:}}
+    <tr>
+      <td>{{=comment.author}}</td>
+      <td>{{=comment.body}}</td>
+    </tr>
+  {{pass}}
+</table>
+{{else:}}
+  <p>No comments posted yet.</p>
+{{pass}}
+
+<h3>post a comment:</h3>
+{{if auth.user:}}
+  {{=form}}
+{{else:}}
+  <p>log in to post comments</p>
+{{pass}}

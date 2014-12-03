@@ -1,0 +1,10 @@
+{{for i, ingredient in enumerate(recipe.ingredient_list):}}
+   <ul>
+      <li>
+        {{=ingredient}}
+        {{if recipe.ingredient_desc_list[i] is not None:}}
+          {{=' - ' + recipe.ingredient_desc_list[i]}}
+        {{pass}}
+      </li>
+   </ul>
+{{pass}}

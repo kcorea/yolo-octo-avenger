@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+
+<h1>Recent Posts</h1>
+{{for recipe in recent_posts:}}
+  {{=A(IMG(_src=URL('download', args=recipe.image),
+           _width="200px", _height="200px"),
+       _href=URL('view', args=recipe.id))}}
+  {{=P(A(recipe.title, _href=URL('view', args=recipe.id)) 
+       + ' - ' + recipe.description)}}
+{{pass}}
+
+<h1>Popular Posts</h1>
+{{for recipe in top_viewed:}}
+  {{=A(IMG(_src=URL('download', args=recipe.image),
+           _width="200px", _height="200px"),
+       _href=URL('view', args=recipe.id))}}
+  {{=P(A(recipe.title, _href=URL('view', args=recipe.id)) 
+       + ' - ' + recipe.description)}}
+{{pass}}
+

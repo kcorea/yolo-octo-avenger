@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+[ {{=A('home', _href=URL('index'))}} | 
+  {{=A('create', _href=URL('create'))}} ]
+
+<h3>task: </h3>
+  <p>{{=task.title}}</p>
+<h3>assigned by: </h3>
+  <p>{{=task.assigner.email}}</p>
+<h3>description:</h3>
+  <p>{{=task.description}}</p>
+
+<h3>status:</h3>
+{{if task.status=='pending':}}
+  <p>{{=form1}}</p>
+{{elif task.status=='accepted':}}
+  <p>{{=form2}}</p>
+{{else:}}
+  <p>{{=task.status}}</p>
+{{pass}}
+

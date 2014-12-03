@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+{{for i in range(1, 13):}}
+<script>
+$(document).ready(function() {
+  $("#{{=str(i)+'inc'}}").click(function(e) {
+    var name = $(e.target).parent().children("#name").html();
+    var msg = "msg=" + JSON.stringify(name);
+    $.post('{{=increment_url}}', msg, function(jdata) {
+      var data = JSON.parse(jdata);
+      newcount = data["result"];
+      $(e.target).parent().children("#count").html(newcount);
+    });
+  });
+});
+</script>
+{{pass}}
+
+{{for i in range(1, 13):}}
+<script>
+$(document).ready(function() {
+  $("#{{=str(i)+'dec'}}").click(function(e) {
+    var name = $(e.target).parent().children("#name").html();
+    var msg = "msg=" + JSON.stringify(name);
+    $.post('{{=decrement_url}}', msg, function(jdata) {
+      var data = JSON.parse(jdata);
+      counter = data["result"];
+      $(e.target).parent().children("#count").html(counter);
+    });
+  });
+});
+</script>
+{{pass}}
+
+<script>
+$(document).ready(function() {
+  $("#submit_counts").click(function() {
+    location.href = "{{=URL('view_part_one')}}"
+  });
+});
+</script>
+
+{{end}}
+
+<div id="mylist">
+</div>
+
+{{for president in presidents:}}
+  <div id="president">
+    <span id="name">{{=president.name}}</span> 
+    <span id="count">{{=president.counter}}</span>
+    <button id="{{=str(president.id)+'inc'}}">+</button>
+    <button id="{{=str(president.id)+'dec'}}">-</button>
+  </div>
+{{pass}}
+
+<button id="submit_counts">submit</button>

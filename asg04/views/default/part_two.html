@@ -1,0 +1,80 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<meta charset="utf-8">
+<title>jQuery UI Sortable - Default functionality</title>
+<link rel="stylesheet" 
+      href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<style>
+  #sortable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    width: 60%; 
+  }
+  #sortable li { 
+    margin: 0 3px 3px 3px; 
+    padding: 0.4em; 
+    padding-left: 1.5em; 
+    font-size: 1.4em; 
+    height: 18px; 
+  }
+  #sortable li span { 
+    position: absolute; 
+    margin-left: -1.3em; 
+  }
+  .win  {
+    border: 1px solid #d3d3d3;
+    background: #daa520 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
+    font-weight: normal;
+    color: #555555;
+}
+</style>
+
+<script>
+$(function() {
+  $("#sortable").sortable();
+  $("#sortable").disableSelection();
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  $("#sortable").sortable({
+    update : function(e, ui) {
+      var data = $("#sortable").sortable("toArray");
+      for (var i = 0; i < 12; i++) {
+        if (data[i] != (i + 1)) return;
+      }
+      for (var i = 1; i <= 12; i++) {
+        $("#"+i).switchClass("ui-state-default", "win", 10);
+      }
+      str = "You Win!"
+      var encodeditem = $('<h2/>').text(str).html();
+      var newdiv = $("<h2>");
+      newdiv.html(encodeditem);
+      $("#newitem").val("");
+      $("#windiv").append(newdiv);
+    }
+  });
+});
+</script>
+
+{{end}}
+
+<div id="windiv">
+</div>
+
+<ul id="sortable">
+{{for president in random_list:}}
+  <li id="{{=str(president.id)}}" class="ui-state-default">
+    {{=president.name + ' (' + str(president.id) + ')'}}
+  </li>
+{{pass}}
+</ul>
+
+<p>for reviewing sake the answer is given, the order is ascending numbers in
+paren<p>

@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+<h2>Your images:</h2>
+<ul>
+  {{for image in images:}}
+    <li>{{=A(image.title, 
+             _href=URL('show_image', args=[image.random_id]))}}</li>
+  {{pass}}
+</ul>
+<p>[ {{=A('post image', _href=URL('create_image'))}} ]</p>
+
+<h2>Your files:</h2>
+<ul>
+  {{for user_file in files:}}
+    <li>{{=A(user_file.title, 
+             _href=URL('show_file', args=[user_file.random_id]))}}</li>
+  {{pass}}
+</ul>
+<p>[ {{=A('post file', _href=URL('create_file'))}} ]</p>

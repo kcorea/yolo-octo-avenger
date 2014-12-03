@@ -1,0 +1,28 @@
+{{extend 'layout.html'}}
+
+<h2>Tasks you've assigned:</h2>
+<table>
+  <tr> <th>task</th> <th>status</th> </tr>
+  {{for task in assigned_to:}}
+    <tr>
+       <td>{{=A(task.title, 
+                _href=URL('show_assigner', args=task.id))}}</td>
+       <td>{{=task.status}}</td>
+    </tr>
+  {{pass}}
+</table>
+
+<p>[ {{=A('Create a task', _href=URL('create'))}} ]</p>
+
+<h2>Tasks assigned to you:</h2>
+<table>
+  <tr> <th>task</th> <th>status</th> </tr>
+  {{for task in assigned_by:}}
+    <tr>
+       <td>{{=A(task.title, 
+                _href=URL('show_assignee', args=task.id))}}</td>
+       <td>{{=task.status}}</td>
+    </tr>
+  {{pass}}
+</table>
+

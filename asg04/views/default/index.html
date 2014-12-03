@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script>
+$(document).ready(function() {
+  $("#part_one").click(function() {
+    location.href = "{{=part_one_url}}"
+  });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  $("#part_two").click(function() {
+    location.href = "{{=part_two_url}}"
+  });
+});
+</script>
+{{end}}
+
+<button id="part_one">Part 1</button>
+<button id="part_two">Part 2</button>

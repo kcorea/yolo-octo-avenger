@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+[ {{=A('home', _href=URL('index'))}} ]
+<h2>file:</h2>
+<p>{{=A(user_file.title, _href=URL('download', args=user_file.filename))}}</p>
+<h2>description:</h2>
+<p>{{=user_file.description}}</p>

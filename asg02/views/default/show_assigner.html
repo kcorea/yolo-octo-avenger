@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+[ {{=A('home', _href=URL('index'))}} | 
+  {{=A('create', _href=URL('create'))}} ]
+
+<h3>task: </h3>
+  <p>{{=task.title}}</p>
+<h3>assigned to: </h3>
+  <p>{{=task.assignee_email}}</p>
+<h3>description:</h3>
+  <p>{{=task.description}}</p>
+<h3>status:</h3>
+  <p>{{=task.status}}</p>
+
